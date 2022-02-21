@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load pybo_filter %}
+{% block content %}
+
+<div class="container-fluid my-3">    
+
+    <table class="table">
+        <thead>
+            <tr class ="small text-center thead-dark">
+                <th>번호</th>
+                <th>아이디</th>
+                <th>이름</th>
+                <th>레벨</th>
+                <th>가입일</th>
+                <th>Email</th>
+                <!-- <th>연락처</th> -->
+                <th>인지경로</th>
+                <th>최근로그인</th>
+                <th>마케팅여부</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if user_list %}
+            {% for user in user_list %}
+            <tr class="text-left user_list">
+                <th scope="row" class="text-center">{{ user.id }}</th>
+                <th class="text-center">{{ user.user_id }}</th>
+                <th>{{ user.name }}</th>
+                <th class="text-center">{{ user.level }}</th>
+                <th class="text-center">{{ user.join_date|date:"Y-m-d" }}</th>
+                <th>{{ user.email }}</th>
+                <!-- <th>{{ user.telephone }}</th> -->
+                <th>{{ user.knowing_path }}</th>
+                <th>{{ user.recent_login|date:"Y-m-d" }}</th>
+                <th>{{ user.marking }}</th>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td colspan="3">회원이 없습니다.</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
